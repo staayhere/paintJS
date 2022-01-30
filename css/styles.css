@@ -30,11 +30,11 @@ body{
     margin-bottom: 30px;    
 }
 
-.controls .controls__butns {
+.controls .controls__btns {
     margin-bottom: 30px;    
 }
 
-.controls__butns button {
+.controls__btns button {
     all: unset;
     cursor: pointer;
     background-color: white;
@@ -50,7 +50,7 @@ body{
     font-size: 12px;
 }
 
-.controls__butns button:active {
+.controls__btns button:active {
     transform: scale(0.98);
 }
 
