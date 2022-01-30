@@ -3,6 +3,7 @@ const ctx = canvas.getContext("2d");
 const colors = document.getElementsByClassName("jsColor");
 const range = document.getElementById("jsRange");
 const mode = document.getElementById("jsMode");
+const saveBtn = document.getElementById("jsSave");
 
 const INITIAL_COLOR = "#2c2c2c";
 
@@ -74,6 +75,19 @@ function hanldeCanvasClick(){
     }    
 }
 
+function handleRightClick(event){
+    // contextmenu는 우클릭시 나타나는 메뉴를 말하는데 이걸 preventDefault함으로써 우클릭 방지를 할 수 있음
+    event.preventDefault();
+}
+
+function handleSaveClick(){
+    const image = canvas.toDataURL("image/png");
+    const link = document.createElement("a");
+    link.href = image;              //다운로드할 이미지의 url
+    link.download = "paintJS[🎨]";  //다운로드할 이미지의 이름
+    link.click();
+}
+
 // canvas가 있는지 체크할거임
 if(canvas){
     canvas.addEventListener("mousemove", onMouseMove);
@@ -81,6 +95,7 @@ if(canvas){
     canvas.addEventListener("mouseup", stopPainting);
     canvas.addEventListener("mouseleave", stopPainting);
     canvas.addEventListener("click", hanldeCanvasClick);
+    canvas.addEventListener("contextmenu", handleRightClick);
 }
 
 Array.from(colors).forEach(color => color.addEventListener("click", handleColorClick));
@@ -89,6 +104,10 @@ if(range) {
     range.addEventListener("input", handleRangeChange);
 }
 
-if(mode){
+if(mode) {
     mode.addEventListener("click", handleModeClick);
+}
+
+if(saveBtn) {
+     saveBtn.addEventListener("click", handleSaveClick);
 }
